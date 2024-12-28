@@ -6,14 +6,12 @@ set -e
 source "$(dirname "$0")/logs.sh"
 source "$(dirname "$0")/constants.sh"
 
-log "Starting alias import..."
+# Function to import useful aliases
+import_aliases() {
+    local ALIAS_FILE="$HOME/.zsh_aliases"
 
-# Path to the aliases file
-ALIAS_FILE="$HOME/.zsh_aliases"
-log "Exporting useful aliases to $ALIAS_FILE..."
-
-# Write aliases to the file
-cat << 'EOF' > "$ALIAS_FILE"
+    log "Exporting useful aliases to $ALIAS_FILE..."
+    cat << 'EOF' > "$ALIAS_FILE"
 alias gs='git status'
 alias ga='git add .'
 alias gc='git commit -m'
@@ -46,14 +44,19 @@ alias netstat='netstat -tulanp'
 alias aliaslist='alias | sort'
 EOF
 
-log "Checking if aliases are already included in $ZSHRC..."
+    log "Checking if aliases are already included in $ZSHRC..."
+    if ! grep -q "source $ALIAS_FILE" "$ZSHRC"; then
+        log "Adding alias file to $ZSHRC..."
+        echo "source $ALIAS_FILE" >> "$ZSHRC"
+        log "Aliases have been added to $ZSHRC."
+    else
+        warn "Aliases are already included in $ZSHRC. Skipping."
+    fi
 
-# Add source command to .zshrc if not already present
-if ! grep -q "source $ALIAS_FILE" "$ZSHRC"; then
-    echo "\n# Load custom aliases\nsource $ALIAS_FILE" >> "$ZSHRC"
-    log "Aliases added to $ZSHRC."
-else
-    log "Aliases are already included in $ZSHRC. Skipping."
-fi
+    log "Reloading Zsh configuration to apply changes..."
+    source "$ZSHRC"
 
-log "Alias import completed successfully."
+    log "Useful aliases imported successfully!"
+}
+
+import_aliases
