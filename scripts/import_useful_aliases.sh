@@ -43,5 +43,6 @@ alias netstat='netstat -tulanp'
 alias aliaslist='alias | sort'
 EOF
 
+
 log "Checking if aliases are already included in $ZSHRC..."
-if ! grep -q "source $ALIAS_FILE"
+if ! grep -q "source $ALIAS_FILE" "$Z

@@ -32,6 +32,9 @@ else
     log "Oh My Zsh installed successfully."
 fi
 
-warn "IMPORTANT: To activate Zsh as your shell, restart your terminal or manually run:"
-warn "           ${CYAN}zsh${NC}"
-warn "Then continue with the installation process by re-running install.sh."
+# Inform the user about the next steps
+warn "IMPORTANT: Zsh has been installed and configured as the default shell."
+warn "To activate Zsh and continue the setup, please do the following:"
+warn "1. Restart your terminal or manually run: ${CYAN}zsh${NC}"
+warn "2. Re-run the installation script with: ${CYAN}./install.sh${NC}"
+warn "Installation stopped here to ensure the changes take effect."
