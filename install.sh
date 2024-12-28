@@ -45,14 +45,27 @@ print_banner() {
     echo -e "${NC}"
 }
 
+# Check if zsh is the default shell
+check_zsh_default() {
+    if [[ "$SHELL" != *zsh ]]; then
+        echo -e "\n${RED}ERROR:${NC} Your default shell is not zsh."
+        echo -e "To set zsh as the default shell, run the following command:"
+        echo -e "${CYAN}chsh -s $(which zsh)${NC}"
+        echo -e "Then restart your terminal and re-run this script.\n"
+        exit 1
+    fi
+}
+
 # Main execution
 main() {
     print_banner
+     # Check if zsh is the default shell
+    check_zsh_default
 
     log "Starting MAI setup..."
     run_script "$INSTALL_ZSH"
     run_script "$INSTALL_UTILITIES"
-    run_script "$IMPORT_USEFUL_ALIASES"
+    # run_script "$IMPORT_USEFUL_ALIASES"  # Not needed for now -> I would recommend the suer to run it manually
     run_script "$INSTALL_CUDA"
     run_script "$INSTALL_LLAMA_CPP" 
     run_script "$INSTALL_LLAMA_CPP_PYTHON"
