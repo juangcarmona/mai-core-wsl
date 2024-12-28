@@ -28,13 +28,13 @@ if [ -d "$HOME/.oh-my-zsh" ]; then
     warn "Oh My Zsh is already installed. Skipping installation."
 else
     log "Installing Oh My Zsh..."
-    RUNZSH=no KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" || error "Oh My Zsh installation failed."
+    # Forcing unattended installation
+    RUNZSH=no KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" || error "Oh My Zsh installation failed."
     log "Oh My Zsh installed successfully."
 fi
 
 # Inform the user about the next steps
-warn "IMPORTANT: Zsh has been installed and configured as the default shell."
-warn "To activate Zsh and continue the setup, please do the following:"
-warn "1. Restart your terminal or manually run: ${CYAN}zsh${NC}"
-warn "2. Re-run the installation script with: ${CYAN}./install.sh${NC}"
-warn "Installation stopped here to ensure the changes take effect."
+warn "IMPORTANT: Zsh and Oh My Zsh have been installed and configured as the default shell."
+warn "To activate Zsh, please restart your terminal or manually run:"
+warn "           ${CYAN}zsh${NC}"
+warn "Then continue the setup process by re-running the installation script."
