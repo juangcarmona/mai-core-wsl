@@ -43,9 +43,12 @@ install_cuda_and_cudnn() {
         log "cuDNN repository already downloaded. Skipping download."
     fi
     sudo dpkg -i "$CUDNN_TEMP" || error "Failed to add cuDNN repository."
-    sudo cp /var/cudnn-local-repo-ubuntu2204-9.6.0/cudnn-local-*-keyring.gpg /usr/share/keyrings/cudnn-local-9.6-keyring.gpg
 
-    # Update apt sources and fix conflicts
+    # Copy the GPG key
+    log "Copying cuDNN GPG key..."
+    sudo cp /var/cudnn-local-repo-ubuntu2204-9.6.0/cudnn-local-*-keyring.gpg /usr/share/keyrings/cudnn-local-9.6-keyring.gpg || error "Failed to copy cuDNN GPG key."
+
+    # Fix keyring conflict
     CUDNN_LIST="/etc/apt/sources.list.d/cudnn-local.list"
     if [ -f "$CUDNN_LIST" ]; then
         log "Fixing keyring conflict in $CUDNN_LIST..."
