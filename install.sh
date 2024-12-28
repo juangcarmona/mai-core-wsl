@@ -50,7 +50,7 @@ check_zsh_default() {
     if [[ "$SHELL" != *zsh ]]; then
         echo -e "\n${RED}ERROR:${NC} Your default shell is not zsh."
         echo -e "To set zsh as the default shell, run the following command:"
-        echo -e "${CYAN}chsh -s $(which zsh)${NC}"
+        echo -e "${CYAN}chmod +x $INSTALL_ZSH && ./$INSTALL_ZSH${NC}"
         echo -e "Then restart your terminal and re-run this script.\n"
         exit 1
     fi
