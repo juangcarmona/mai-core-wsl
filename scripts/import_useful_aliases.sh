@@ -8,8 +8,11 @@ source "$(dirname "$0")/constants.sh"
 
 log "Starting alias import..."
 
+# Path to the aliases file
 ALIAS_FILE="$HOME/.zsh_aliases"
 log "Exporting useful aliases to $ALIAS_FILE..."
+
+# Write aliases to the file
 cat << 'EOF' > "$ALIAS_FILE"
 alias gs='git status'
 alias ga='git add .'
@@ -43,6 +46,14 @@ alias netstat='netstat -tulanp'
 alias aliaslist='alias | sort'
 EOF
 
-
 log "Checking if aliases are already included in $ZSHRC..."
-if ! grep -q "source $ALIAS_FILE" "$Z
+
+# Add source command to .zshrc if not already present
+if ! grep -q "source $ALIAS_FILE" "$ZSHRC"; then
+    echo "\n# Load custom aliases\nsource $ALIAS_FILE" >> "$ZSHRC"
+    log "Aliases added to $ZSHRC."
+else
+    log "Aliases are already included in $ZSHRC. Skipping."
+fi
+
+log "Alias import completed successfully."
