@@ -25,7 +25,7 @@ install_utilities() {
     log "Updating package list..."
     sudo apt update -y || error "Failed to update package list."
     log "Installing essential utilities..."
-    sudo apt install -y tree htop curl wget unzip git jq neofetch python3-dev cmake build-essential ninja-build  libcurl4-openssl-dev || error "Failed to install utilities."
+    sudo apt install -y tree htop curl wget unzip git jq neofetch python3-dev python3-venv cmake build-essential ninja-build  libcurl4-openssl-dev || error "Failed to install utilities."
     log "All utilities installed successfully!" 
 }
 
