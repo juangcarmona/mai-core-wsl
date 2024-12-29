@@ -51,7 +51,7 @@ configure_cuda_env() {
         } >> "$ZSHRC"
 
         log "Environment variables configured. Reloading environment variables..."
-        source "$ZSHRC" || error "Failed to reload environment variables. Please source $ZSHRC manually."
+        echo "    source $ZSHRC"
     fi
 }
 
