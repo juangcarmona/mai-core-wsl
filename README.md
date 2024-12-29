@@ -74,24 +74,30 @@ To ensure a smooth start, follow these essential steps for setting up your devel
 
 ### **Installation**
 
-1. **Clone the Repository**:
+1. **Step 1: Clone the Repository**:
    Open your terminal in WSL and run:
    ```bash
    git clone https://github.com/your-username/mai-core-wsl.git
    cd mai-core-wsl
    ```
 
-2. **Run the Installation Script**:
-   Execute the main installation script:
+2. **Step 2: Install ZSH**:
+   Run the following command to install ZSH:   
+   ```bash
+   bash ./scripts/install_zsh.sh
+   ```
+
+   You will see an installation screen like this:
+
+   After installation, close your terminal and open a new one to ensure ZSH is set as the default shell.
+
+3. ** Step 3: Run the Main Installation Script**:
+   Once ZSH is your default shell, navigate back to the mai-core-wsl directory and execute:   
    ```bash
    bash ./scripts/install.sh
    ```
-
-3. **Restart Your Terminal**:
-   After installation, restart your terminal or run:
-   ```bash
-   source ~/.zshrc
-   ```
+   You will see a confirmation screen like this:e ~/.zshrc
+   
 
 ---
 
