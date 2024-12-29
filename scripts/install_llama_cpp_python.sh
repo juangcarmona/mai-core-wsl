@@ -25,7 +25,7 @@ install_llama_cpp_python() {
     pip install --upgrade pip setuptools wheel || error "Failed to upgrade pip, setuptools, or wheel."
     
     # Install llama-cpp-python without cache to ensure clean installation
-    pip install llama-cpp-python --no-cache-dir || error "Failed to install llama-cpp-python."
+    # pip install llama-cpp-python --no-cache-dir || error "Failed to install llama-cpp-python."
 
     if command -v nvidia-smi &>/dev/null; then
         log "NVIDIA GPU detected, configuring for CUDA..."
@@ -34,6 +34,7 @@ install_llama_cpp_python() {
         pip install llama-cpp-python --force-reinstall --no-cache-dir || error "Failed to reinstall llama-cpp-python with CUDA support."
     else
         warn "No NVIDIA GPU detected. Skipping CUDA configuration."
+        pip install llama-cpp-python --no-cache-dir
     fi
 
     deactivate
