@@ -54,9 +54,10 @@ EOF
     fi
 
     log "Reloading Zsh configuration to apply changes..."
-    source "$ZSHRC"
 
     log "Useful aliases imported successfully!"
+
+    zsh
 }
 
 import_aliases
