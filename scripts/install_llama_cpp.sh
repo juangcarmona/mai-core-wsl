@@ -8,9 +8,6 @@ source "$(dirname "$0")/logs.sh"
 source "$(dirname "$0")/constants.sh"
 
 install_llama_cpp() {
-    local LLAMA_DIR="$REPO_DIR/llama.cpp"
-    local BIN_DIR="$LLAMA_DIR/build"
-
     log "Cloning llama.cpp repository to $LLAMA_DIR..."
     if [ -d "$LLAMA_DIR" ]; then
         warn "llama.cpp repository already exists at $LLAMA_DIR. Pulling latest changes..."
@@ -19,10 +16,6 @@ install_llama_cpp() {
     else
         git clone https://github.com/ggerganov/llama.cpp.git "$LLAMA_DIR" || error "Failed to clone llama.cpp repository."
     fi
-
-    log "Installing dependencies..."
-    sudo apt-get update
-    sudo apt-get install -y libcurl4-openssl-dev || error "Failed to install libcurl dependencies."
 
     log "Building llama.cpp..."
     cd "$LLAMA_DIR"

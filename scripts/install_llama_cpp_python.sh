@@ -10,13 +10,6 @@ source "$(dirname "$0")/constants.sh"
 install_llama_cpp_python() {
     log "Checking prerequisites for Python virtual environments..."
     
-    # Ensure the python3-venv package is installed
-    if ! dpkg -l | grep -q python3-venv; then
-        warn "The package python3-venv is missing. Installing it now..."
-        sudo apt-get update -y || error "Failed to update package list."
-        sudo apt-get install -y python3-venv || error "Failed to install python3-venv."
-    fi
-    
     # Check if virtual environment already exists
     if [ -d "$VENV_DIR" ]; then
         warn "Virtual environment already exists at $VENV_DIR. Skipping creation."

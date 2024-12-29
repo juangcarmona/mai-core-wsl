@@ -65,12 +65,12 @@ main() {
     log "Starting MAI setup..."
     run_script "$INSTALL_ZSH"
     run_script "$INSTALL_UTILITIES"
-    # run_script "$IMPORT_USEFUL_ALIASES"  # Not needed for now -> I would recommend the suer to run it manually
     run_script "$INSTALL_CUDA"
     run_script "$INSTALL_LLAMA_CPP" 
     run_script "$INSTALL_LLAMA_CPP_PYTHON"
     run_script "$CONFIGURE_ENVIRONMENT"
     run_script "$INSTALL_PYTHON_PACKAGES"
+    # run_script "$IMPORT_USEFUL_ALIASES"  # Not needed for now -> I would recommend the suer to run it manually
 
 
 echo -e "${BLUE}"

@@ -86,7 +86,8 @@ display_system_info() {
     fi
 
     # llama.cpp
-    if [ -d "$REPO_DIR/llama.cpp" ]; then
+
+    if [ -d "$LLAMA_DIR" ]; then
         if command -v llama-cli &>/dev/null; then
             echo -e "${GREEN}llama.cpp:${NC} Installed and functional."
         else
