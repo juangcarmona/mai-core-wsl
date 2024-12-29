@@ -49,7 +49,9 @@ configure_cuda_env() {
             echo "export CUDACXX=/usr/local/cuda-12/bin/nvcc"
             echo "export CMAKE_ARGS=\"-DGGML_CUDA=on -DCMAKE_CUDA_ARCHITECTURES=all-major\""
         } >> "$ZSHRC"
-        log "Environment variables configured. Please restart your terminal or source $ZSHRC."
+
+        log "Environment variables configured. Reloading environment variables..."
+        source "$ZSHRC" || error "Failed to reload environment variables. Please source $ZSHRC manually."
     fi
 }
 
