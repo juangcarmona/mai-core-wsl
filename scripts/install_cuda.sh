@@ -51,7 +51,6 @@ configure_cuda_env() {
         } >> "$ZSHRC"
 
         log "Environment variables configured. Reloading environment variables..."
-        zsh
         chsh -s $(which zsh)
     fi
 }
