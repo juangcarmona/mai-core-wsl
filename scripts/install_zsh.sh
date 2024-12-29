@@ -36,6 +36,8 @@ if [ "$NEED_RESTART" = true ]; then
     warn "IMPORTANT: Zsh and/or Oh My Zsh were installed."
     warn "To activate Zsh as your shell, restart your terminal or run: ${CYAN}zsh${NC}"
     warn "Once restarted, re-run the installation script to continue."
+    zsh
+    chsh -s $(which zsh)
     exit 1
 fi
 
