@@ -1,0 +1,1 @@
+docker run -it --gpus all   -p 8080:8080   -v $HOME/.tabby:/data   registry.tabbyml.com/tabbyml/tabby   serve   --model Qwen2.5-Coder-1.5B   --chat-model Qwen2.5-Coder-7B-Instruct  --device cuda

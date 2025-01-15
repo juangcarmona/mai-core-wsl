@@ -42,6 +42,8 @@ alias myip='curl ifconfig.me'
 alias meminfo='free -m -l -t'
 alias netstat='netstat -tulanp'
 alias aliaslist='alias | sort'
+alias mytree='tree -C -I "node_modules|bin|.git|.DS_Store|.idea|.vscode|.vscode-server|__pycache__|*.log|*.tmp"'
+
 EOF
 
     log "Checking if aliases are already included in $ZSHRC..."

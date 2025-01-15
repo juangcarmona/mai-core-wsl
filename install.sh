@@ -54,6 +54,23 @@ check_zsh_default() {
     fi
 }
 
+# Check if nvcc is available, and reload ZSH automatically if not
+check_nvcc() {
+    if ! command -v nvcc &>/dev/null; then
+        warn "The 'nvcc' command is not available in the current terminal session."
+        echo -e "${YELLOW}Attempting to reload the terminal session automatically...${NC}"
+
+        # Try to reload the current shell
+        if exec "$SHELL"; then
+            log "Terminal session reloaded successfully. Re-run the script if needed."
+        else
+            error "Failed to reload the shell automatically. Please close and reopen your terminal."
+            echo -e "${CYAN}After restarting the terminal, re-run the installation script.${NC}"
+            exit 1
+        fi
+    fi
+}
+
 # Main execution
 main() {
     print_banner
@@ -64,6 +81,9 @@ main() {
     run_script "$INSTALL_ZSH"
     run_script "$INSTALL_UTILITIES"
     run_script "$INSTALL_CUDA"
+        # Check if nvcc is available before continuing with llama.cpp
+    check_nvcc
+
     run_script "$INSTALL_LLAMA_CPP" 
     run_script "$INSTALL_LLAMA_CPP_PYTHON"
     # run_script "$IMPORT_USEFUL_ALIASES"  # Not needed for now -> I would recommend the suer to run it manually
